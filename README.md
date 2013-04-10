@@ -5,12 +5,12 @@ Provides methods for uploading data to Amazon Glacier. Can be used for uploading
 As of yet there is not a method for retrieving data uploaded by this class but there will be shortly. Additionally, it would be smart to encrypt the stream that you're piping into this class if you're backing up sensitive data.
 
 ## Required libraries:
-aws-java-sdk-1.4.1.jar
-commons-logging-1.1.1.jar
+aws-java-sdk-1.4.1.jar  
+commons-logging-1.1.1.jar  
 httpclient-4.1.1.jar  
 httpcore-4.1.jar  
 jackson-core-asl-1.8.7.jar  
-jackson-mapper-asl-1.8.7.jar
+jackson-mapper-asl-1.8.7.jar  
 
 ## Example usage:
 
