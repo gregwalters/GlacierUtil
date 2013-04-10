@@ -40,7 +40,7 @@ public class GlacierUtil {
 		GlacierUtil util = new GlacierUtil();
 		try {
 			switch (Integer.parseInt(args[0])) {
-				case 1:		util.upload(args[1]);
+				case 1:		util.upload(args[1], args[2]);
 						break;
 				case 2:		util.listVaults();
 						break;
@@ -164,7 +164,7 @@ public class GlacierUtil {
 		System.out.println("Job id: " + jobId);
 	}
 
-	public void upload(String uploadSize) {
+	public void upload(String vault, String uploadSize) {
 		isSetup();
 		int maxRead = Integer.parseInt(uploadSize)*1024*1024;
 		byte[] bytes = new byte[maxRead];
@@ -191,7 +191,7 @@ public class GlacierUtil {
 				long maxBytes = Runtime.getRuntime().maxMemory();
 				long currentBytes = Runtime.getRuntime().totalMemory();
 				long freeBytes = Runtime.getRuntime().freeMemory();
-				UploadResult result = atm.upload("zfs_backup", "archive " + (new Date()), file);
+				UploadResult result = atm.upload(vault, "archive " + (new Date()), file);
 				System.out.println("Archive ID: " + result.getArchiveId());
 				System.err.println("Heap Usage:");
 				System.err.println("Max: " + maxBytes + " Current: " + currentBytes + " Free: " + freeBytes);
@@ -205,7 +205,7 @@ public class GlacierUtil {
 	}
 
 	public void printHelp() {
-		System.out.println("1: upload <max upload size>");
+		System.out.println("1: upload <vault> <max upload size>");
 		System.out.println("2: listVaults");
 		System.out.println("3: delete <vault>");
 		System.out.println("4: start job to list vault contents <vault>");
